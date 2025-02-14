@@ -3,6 +3,7 @@
 echo "Setup will begin now"
 
 
+//Functions
 
 install_package() {
     local package=$1
@@ -17,6 +18,20 @@ install_package() {
         echo "$package installed successfully."
     fi
 }
+
+configure(){
+    if [[ -f ~/.vimrc ]]; then
+        echo "Configure"
+    else
+        touch ~/.vimrc
+    fi
+    echo "asdasdasdasd"
+}
+
+
+
+
+// Main
 
 if [[ -f /etc/os-release ]]; then
     . /etc/os-release
@@ -43,3 +58,5 @@ if [[ -f /etc/os-release ]]; then
 else
     echo "Unsupported OS"
 fi
+
+configure;
