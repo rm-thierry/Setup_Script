@@ -10,8 +10,6 @@ else
     exit 1
 fi
 
-echo "Setup will begin now"
-
 install_package(){
     local package=$1
     echo "Installing $package"
@@ -40,23 +38,31 @@ install_java(){
 }
 
 if [[ $OS == *"Debian"* || $OS == *"Ubuntu"* ]]; then
-    echo "Updating package list"
-    sudo apt-get update -y
-    echo "Upgrading packages"
-    sudo apt-get upgrade -y
-
-    install_package git
-    install_package curl
-    install_package zsh
-    install_package vim
-    install_package tmux
-    install_package htop
-    install_package neofetch
+    echo "Setup is starting..."
+    sleep 5
+    continue
 else
     echo "Unsupported OS"
+    exit
 fi
+
+
+echo "Updating package list"
+sudo apt-get update -y
+echo "Upgrading packages"
+sudo apt-get upgrade -y
+
+install_package git
+install_package curl
+install_package zsh
+install_package vim
+install_package tmux
+install_package htop
+install_package neofetch
+
+echo ""
+echo "Operating system: $OS"
+echo ""
 
 configure
 install_java
-
-echo "Operating system: $OS"
