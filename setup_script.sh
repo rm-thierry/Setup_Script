@@ -37,15 +37,19 @@ install_java(){
     fi
 }
 
+install_mysql(){
+    sudo apt install mariadb-server -y
+    systemctl start mariadb
+    mysql_secure_installation
+    echo "MySQL/MariaDB Installation und Sicherheitskonfiguration abgeschlossen."
+}
+
 if [[ $OS == *"Debian"* || $OS == *"Ubuntu"* ]]; then
     echo "Setup is starting..."
-    sleep 5
-    continue
 else
     echo "Unsupported OS"
-    exit
+    exit 1
 fi
-
 
 echo "Updating package list"
 sudo apt-get update -y
@@ -66,3 +70,4 @@ echo ""
 
 configure
 install_java
+install_mysql
